@@ -42,9 +42,26 @@ public class ArrayMethods
     
    public void evenToZero()
    {
+       for(int i = 0; i<values.length;i++)
+       {
+           if ((values[i]%2)==(0))
+           {
+               values[i] = 0;
+            }
+        }
     }
     
    public void removeMiddle()
    {
+       int middle = values.length/2;
+       if((values.length%2)==0)
+       {
+           values[middle] = 0;
+           values[middle - 1] = 0;
+        }
+       else
+       {
+           values[middle] = 0;
+        }
     }
 }
