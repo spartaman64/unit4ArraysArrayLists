@@ -64,4 +64,16 @@ public class ArrayMethods
            values[middle] = 0;
         }
     }
+    
+   public void replaceWithLargestNeighbor()
+   {
+       int preValue = values[0];
+       for (int i = 1; i < values.length - 1; i++)
+       {
+           int temp = values[i];
+           if (preValue > values[i+1])
+           {
+            }
+        }
+    }
 }
