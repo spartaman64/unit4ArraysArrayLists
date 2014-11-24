@@ -44,6 +44,11 @@ public class Array2D
            str += table[row-1][col]+"\t";
         }
         
+       for(int val : table[row])
+       {
+           str += val + "\t";
+        }
+        
        return str;                                                                                                                                     
     }
     
