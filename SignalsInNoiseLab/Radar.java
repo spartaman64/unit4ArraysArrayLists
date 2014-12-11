@@ -12,9 +12,8 @@ public class Radar
     private boolean[][] currentScan;
     
     //speed of monster
-    int speed =5*(int)Math.random();
-    int dx =speed;
-    int dy =speed;
+    final int dx =5*(int)Math.random();
+    final int dy =5*(int)Math.random();
     // value of each cell is incremented for each scan in which that cell triggers detection 
     private int[][] accumulator;
     
@@ -65,10 +64,10 @@ public class Radar
         }
         
         // detect the monster
-        currentScan[monsterLocationRow+dy][monsterLocationCol+dx] = true;
+        currentScan[monsterLocationRow][monsterLocationCol] = true;
         
         // inject noise into the grid
-        //injectNoise();
+        injectNoise();
         
         // udpate the accumulator
         for(int row = 0; row < currentScan.length; row++)
@@ -175,23 +174,23 @@ public class Radar
         return numScans;
     }
     
-//     /**
-//      * Sets cells as falsely triggering detection based on the specified probability
-//      * 
-//      */
-//     private void injectNoise()
-//     {
-//         for(int row = 0; row < currentScan.length; row++)
-//         {
-//             for(int col = 0; col < currentScan[0].length; col++)
-//             {
-//                 // each cell has the specified probablily of being a false positive
-//                 if(Math.random() < noiseFraction)
-//                 {
-//                     currentScan[row][col] = true;
-//                 }
-//             }
-//         }
-//     }
+    /**
+     * Sets cells as falsely triggering detection based on the specified probability
+     * 
+     */
+    private void injectNoise()
+    {
+        for(int row = 0; row < currentScan.length; row++)
+        {
+            for(int col = 0; col < currentScan[0].length; col++)
+            {
+                // each cell has the specified probablily of being a false positive
+                if(Math.random() < noiseFraction)
+                {
+                    currentScan[row][col] = true;
+                }
+            }
+        }
+    }
     
 }
