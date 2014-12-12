@@ -1,4 +1,4 @@
-
+import java.util.Scanner;
 /**
  * The model for radar scan and accumulator
  * 
@@ -12,14 +12,16 @@ public class Radar
     private boolean[][] currentScan;
     
     //speed of monster
-    final int dx =5*(int)Math.random();
+    Scanner x = new Scanner(System.in);
+    System.out.println("Put in a x: ");
+    final int dx =x.nextInt();
     final int dy =5*(int)Math.random();
     // value of each cell is incremented for each scan in which that cell triggers detection 
     private int[][] accumulator;
     
     // location of the monster
-    private int monsterLocationRow;
-    private int monsterLocationCol;
+    private int currMonsterLocationRow;
+    private int currMonsterLocationCol;
 
     // probability that a cell will trigger a false detection (must be >= 0 and < 1)
     private double noiseFraction;
@@ -41,8 +43,7 @@ public class Radar
         
         // randomly set the location of the monster (can be explicity set through the
         //  setMonsterLocation method
-        monsterLocationRow = (int)(Math.random() * rows);
-        monsterLocationCol = (int)(Math.random() * cols);
+        
         
         noiseFraction = 0.05;
         numScans= 0;
@@ -64,10 +65,10 @@ public class Radar
         }
         
         // detect the monster
-        currentScan[monsterLocationRow][monsterLocationCol] = true;
+        currentScan[currMonsterLocationRow][currMonsterLocationCol] = true;
         
         // inject noise into the grid
-        injectNoise();
+        //injectNoise();
         
         // udpate the accumulator
         for(int row = 0; row < currentScan.length; row++)
@@ -100,8 +101,8 @@ public class Radar
     public void setMonsterLocation(int row, int col)
     {
         // remember the row and col of the monster's location
-        monsterLocationRow = row;
-        monsterLocationCol = col;
+        currMonsterLocationRow = row;
+        currMonsterLocationCol = col;
         
         // update the radar grid to show that something was detected at the specified location
         currentScan[row][col] = true;
@@ -174,23 +175,23 @@ public class Radar
         return numScans;
     }
     
-    /**
-     * Sets cells as falsely triggering detection based on the specified probability
-     * 
-     */
-    private void injectNoise()
-    {
-        for(int row = 0; row < currentScan.length; row++)
-        {
-            for(int col = 0; col < currentScan[0].length; col++)
-            {
-                // each cell has the specified probablily of being a false positive
-                if(Math.random() < noiseFraction)
-                {
-                    currentScan[row][col] = true;
-                }
-            }
-        }
-    }
+//     /**
+//      * Sets cells as falsely triggering detection based on the specified probability
+//      * 
+//      */
+//     private void injectNoise()
+//     {
+//         for(int row = 0; row < currentScan.length; row++)
+//         {
+//             for(int col = 0; col < currentScan[0].length; col++)
+//             {
+//                 // each cell has the specified probablily of being a false positive
+//                 if(Math.random() < noiseFraction)
+//                 {
+//                     currentScan[row][col] = true;
+//                 }
+//             }
+//         }
+//     }
     
 }
