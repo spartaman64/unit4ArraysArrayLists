@@ -10,12 +10,24 @@ public class Radar
     
     // stores whether each cell triggered detection for the current scan of the radar
     private boolean[][] currentScan;
-    
+    public int setSpeedX()
+    {
     //speed of monster
     Scanner x = new Scanner(System.in);
     System.out.println("Put in a x: ");
-    final int dx =x.nextInt();
-    final int dy =5*(int)Math.random();
+    final int dx =1;
+    return dx;
+}
+
+    public int setSpeedY()
+    {
+        //speed of monster
+        Scanner y = new Scanner(System.in);
+        System.out.println("Put in a y: ");
+        final int dy =y.nextInt();
+        return dy;
+    
+}
     // value of each cell is incremented for each scan in which that cell triggers detection 
     private int[][] accumulator;
     
@@ -43,7 +55,8 @@ public class Radar
         
         // randomly set the location of the monster (can be explicity set through the
         //  setMonsterLocation method
-        
+        int dx = setSpeedX();
+        int dy = setSpeedY();
         
         noiseFraction = 0.05;
         numScans= 0;
