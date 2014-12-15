@@ -14,8 +14,8 @@ public class Radar
     {
     //speed of monster
     Scanner x = new Scanner(System.in);
-    System.out.println("Put in a x: ");
-    final int dx =1;
+    System.out.println("Put in speed x: ");
+    final int dx =x.nextInt();
     return dx;
 }
 
@@ -23,9 +23,27 @@ public class Radar
     {
         //speed of monster
         Scanner y = new Scanner(System.in);
-        System.out.println("Put in a y: ");
+        System.out.println("Put in speed y: ");
         final int dy =y.nextInt();
         return dy;
+    
+}
+ public int setX()
+    {
+    //speed of monster
+    Scanner x = new Scanner(System.in);
+    System.out.println("Put in the x location: ");
+    final int sx =x.nextInt();
+    return sx;
+}
+
+    public int setY()
+    {
+        //speed of monster
+        Scanner y = new Scanner(System.in);
+        System.out.println("Put in the y location: ");
+        final int sy =y.nextInt();
+        return sy;
     
 }
     // value of each cell is incremented for each scan in which that cell triggers detection 
@@ -40,6 +58,10 @@ public class Radar
     
     // number of scans of the radar since construction
     private int numScans;
+    
+    //Monster speed
+    final int dx = setSpeedX();
+    final int dy = setSpeedY();
 
     /**
      * Constructor for objects of class Radar
@@ -55,8 +77,7 @@ public class Radar
         
         // randomly set the location of the monster (can be explicity set through the
         //  setMonsterLocation method
-        int dx = setSpeedX();
-        int dy = setSpeedY();
+        setMonsterLocation(setX(),setY());
         
         noiseFraction = 0.05;
         numScans= 0;
